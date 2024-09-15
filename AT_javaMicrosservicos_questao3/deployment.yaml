@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microsservico-springboot-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: microsservico-springboot
+  template:
+    metadata:
+      labels:
+        app: microsservico-springboot
+    spec:
+      containers:
+        - name: microsservico-springboot
+          image: at_javamicrosservicos_questao3:latest # Certifique-se que o nome da imagem está correto
+          imagePullPolicy: Never # Isso garante que ele use a imagem local
+          ports:
+            - containerPort: 8083
