@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  microsservico:
+    build: .
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+spec:
+  replicas: 3  # Número de réplicas
+  selector:
+    matchLabels:
+      app: seu-microsservico
+  template:
+    metadata:
+      labels:
+        app: seu-microsservico
+    spec:
+      containers:
+        - name: seu-microsservico
+          image: seu-usuario/seu-microsservico:latest
+          ports:
+            - containerPort: 8080  # Porta do serviço

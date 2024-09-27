@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microsservico-veiculo-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: microsservico-veiculo
+  template:
+    metadata:
+      labels:
+        app: microsservico-veiculo
+    spec:
+      containers:
+        - name: microsservico-veiculo
+          image: at_javamicrosservicos_questao3:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8083
